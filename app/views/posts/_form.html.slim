@@ -1,0 +1,13 @@
+= form_for(@post) do |f|
+  - if @post.errors.any?
+    ul
+      - @post.errors.full_messages.each do |msg|
+        li = msg
+  div.field
+    = f.label :title
+    = f.text_field :title
+  div.field
+    = f.label :content
+    = f.text_area :content
+  div.actions
+    = f.submit

@@ -1,0 +1,26 @@
+h1 = @post.title
+p = @post.content
+
+h2 Comments
+ul
+  - if @post.comments.any?
+    - @post.comments.each do |comment|
+      li id="comment_#{comment.id}"
+        | #{comment.body} (by #{comment.commenter})
+  - else
+    li no comment yet
+
+h2 Add comment
+= form_for([@post, @comment]) do |f|
+  - if @comment.errors.any?
+    ul
+      - @comment.errors.full_messages.each do |msg|
+        li = msg
+  div.field
+    = f.label :commenter
+    = f.text_field :commenter
+  div.field
+    = f.label :body
+    = f.text_area :body
+  div.actions
+    = f.submit

@@ -1,0 +1,13 @@
+h1 Posts
+
+div id="notice" = notice
+ul
+  - @posts.each do |post|
+    li id="post_#{post.id}"
+      = post.created_at
+      | &nbsp
+      | #{link_to post.title, post_path(post)}(#{post.comments.size})
+      | &nbsp
+      = link_to 'Edit', edit_post_path(post)
+      | &nbsp
+      = link_to 'Delete', post, :confirm => '投稿を削除します', :method => :delete, :remote => true
